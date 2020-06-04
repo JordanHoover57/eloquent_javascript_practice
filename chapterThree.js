@@ -1,68 +1,52 @@
-// console.log("chapter 3")
-// //Declaration notation
-//
-// square(4);
-//
-// function square(x){
-//     return x*x;
-// }
-//
-// function printFarmInventory(cows,chickens){
-//     let cowString = String(cows);
-//     while(cowString.length < 3){
-//         cowString = "0" + cowString;
-//     }
-//     console.log(`${cowString} cows`)
-//
-//     let chickenString = String(chickens);
-//     while(chickenString.length < 3){
-//         chickenString = "0" + chickenString;
-//     }
-//     console.log(`${chickenString} chickens`)
-// }
-//
-// printFarmInventory(4,10)
+/*
+Chapter 3 - Functions - Notes and Exercises
+ */
 
-//Chapter 3 Exercise 1
-//Create a minimum function that takes 2 arguments and returns the minimum value
+/*
+Exercise 1: Minimum
+Write a function 'min' that takes two arguments and returns the smaller of the two values.
+ */
 
-let min = (num1, num2) => {return num1 > num2 ? num2 : num1;}
-
-console.log(min(234,504));
-
-// Zero is even.
-// One is odd.
-// For any other number N, its evenness is the same as N - 2.
-//Define a recursive function isEven corresponding to this description.
- function isEven(num){
-    if(num == 0) return true
-    else if(num == 1) return false
-    else if(num < 0) return isEven(num + 2)
-    else return isEven(num -2)
+function min(a,b){
+   return (a < b) ? a : b;
 }
 
-console.log(isEven(50));
-console.log(isEven(75));
-console.log(isEven(-6));
+console.log(min(4,8));
+console.log(min(-4,10));
+console.log(min(-4,-7));
 
-//Bean Counter
+/*
+Exercise 2: Recursion
+Write a recursive function to determine whether a number is even or odd only argument will be
+whole positive number and it must return a boolean.
+ */
 
-function countBs(s){
-    let count = 0;
-    for(i = 0; i <= s.length -1;i++){
-        if(s[i] === 'B') count++
-    }
-    return count
+
+function isEven(num){
+    if(num == 0) return true;
+    else if(num == 1) return false;
+    //Convert a negative into a positive
+    else if(num < 0) return isEven(-num);
+    else return isEven(num - 2);
 }
 
-console.log(countBs('BigBadBBB'))
+console.log(isEven(-4));
+console.log(isEven(33));
 
-function countChar(str, char){
+/*
+Exercise 3: Bean Counting
+Write a function to count the number of 'B's' in a string
+ */
+
+function countChars(str, character){
     let count = 0;
-    for(i = 0; i <= str.length -1;i++){
-        if(str[i] === char) count++
+    for(let i = 0; i < str.length -1; i++){
+        if(str[i] == character){
+            count++;
+        }
     }
     return count;
 }
 
-console.log(countChar('BigBadXXX','B'))
+
+console.log(countChars("Brad Better Be Back","a"));
